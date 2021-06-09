@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>HOME PAGE</title>
+	<link rel="stylesheet" type="text/css" href="stylehome.css">
+</head>
+<body>
+<header>
+	<div class="main">
+		
+			
+     <ul>
+         <li><a href="#">Card Apllication</a></li>
+         <li><a href="#">Workers Details</a></li>
+          <li><a href="#">Work Application</a></li>
+          <li><a href="#" onclick="addleader()">Add Leader</a></li> 
+         <li><a href="#">About Us</a></li> 
+     </ul>
+
+	</div>
+	<div class="headingtxt">
+				<p>തൊഴിലുറപ്പ് പദ്ധതി</p></div>
+			
+				<div class="logo">
+			<img src="logo.JPG"></div>
+			
+</header>
+<div id="result"></div>
+ 
+<script>
+// Check browser support
+if (typeof(Storage) !== "undefined") {
+// Retrieve
+var a=document.getElementById("result").innerHTML = localStorage.getItem("userid");
+window.alert(a+"value here");
+} else {
+document.getElementById("result").innerHTML = "Browser does not support Web Storage.";
+}
+function addleader(){
+	window.alert("inside function")
+	window.location.href = "addleader.html";
+}
+
+</script>
+</body>
+</html>

@@ -1,0 +1,16 @@
+body{
+    background:#34495e;
+    margin-bottom: 20px;
+    text-align: center;
+    font-size: 26px;
+    font-weight: bold;
+    color: #fff;
+}
+.maindiv{
+
+    background: #191919;
+    margin: auto;
+    width: 60%;
+    border: 5px solid #f700ff;
+    padding: 10px;
+}
