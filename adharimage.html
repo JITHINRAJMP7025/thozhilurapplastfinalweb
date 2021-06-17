@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head><style>
+  
+</style>
+</head>
+<body> 
+  <style>
+    img{   margin-left: 550px;
+    
+           margin-right: auto; height: 500px; width: 200px; border: 2px solid black}
+    button{
+      text-align: 500px;
+    
+    }
+  </style>
+    <button onclick=back()>back</button>
+    <img src="data" >
+   
+    <script src="https://www.gstatic.com/firebasejs/8.6.5/firebase.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-databse.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-storage.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-analytics.js"></script>
+    
+    <script>
+    const firebaseConfig = {
+      apiKey: "AIzaSyA4nlT7zZHEMZNFJw4yP-oSp8GmVnS8afE",
+      authDomain: "thozhilurapplastfinalproject.firebaseapp.com",
+      databaseURL: "https://thozhilurapplastfinalproject-default-rtdb.firebaseio.com",
+      projectId: "thozhilurapplastfinalproject",
+      storageBucket: "thozhilurapplastfinalproject.appspot.com",
+      messagingSenderId: "782716111048",
+      appId: "1:782716111048:web:a67a6b2e8d075bbbaabdfd",
+      measurementId: "G-KW968MKD5F"
+    };
+    
+    
+    firebase.initializeApp(firebaseConfig);
+    firebase.analytics();
+    </script>
+    <script>
+        
+        var key= localStorage.getItem("userid");
+       /* var dblogs = firebase.database().ref('users/'+'/workers/'+key+'/Applydetails/'+'/adharphoto');
+        dblogs.once("value")
+       .then(function(snapshot) {
+        snapshot.forEach(function(childSnapshot) {
+          var key1 = childSnapshot.key;*/
+         
+         /* var ref1 = firebase.database().ref('users/'+'/workers/'+key+'/Applydetails/'+'/adharphoto/'+key1);
+         ref1.on('value', (snapshot) => {
+            var data = snapshot.val().imageuri;
+           window.alert(data);
+          //  document.querySelector('img').src = data;
+          var img1 =  document.getElementById('myimg');
+          img1.setAttribute('src', data);
+          });
+         //*/
+   //     });
+ //  });
+window.alert(key);
+    var storage    = firebase.storage();
+    var storageRef = storage.ref('users/'+'/workers/'+key+'/Applydetails/'+'/adharphoto');
+    var spaceRef = storageRef.child('1622488108011.jpeg');
+    window.alert(storageRef);
+    storageRef.child('1622488108011.jpeg').getDownloadURL().then(function(url) {
+
+    var test = url;
+
+   document.querySelector('img').src = test;
+   });
+
+   function back(){
+    window.location.href = "workerapply.html"
+   }
+    </script>
+</body>
+</html>

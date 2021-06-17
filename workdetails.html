@@ -1,0 +1,44 @@
+<html>
+    <head>
+        <title style="color: darkgray;">WORKERS Details </title>
+        <link rel="stylesheet"  href="workdetails.css">
+    </head>
+    <body>
+        <h2>WORKER DETAILS</h2>
+        <table>
+            <thead>
+                <th>Number</th>
+                <th>Work Duration</th>
+                <th>Daily Photo</th>
+            </thead>
+            <tbody id="tbody1">
+
+            </tbody>
+        </table>
+        <script src="https://www.gstatic.com/firebasejs/8.6.5/firebase.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-auth.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-databse.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-storage.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-analytics.js"></script>
+        
+        <script>
+        const firebaseConfig = {
+          apiKey: "AIzaSyA4nlT7zZHEMZNFJw4yP-oSp8GmVnS8afE",
+          authDomain: "thozhilurapplastfinalproject.firebaseapp.com",
+          databaseURL: "https://thozhilurapplastfinalproject-default-rtdb.firebaseio.com",
+          projectId: "thozhilurapplastfinalproject",
+          storageBucket: "thozhilurapplastfinalproject.appspot.com",
+          messagingSenderId: "782716111048",
+          appId: "1:782716111048:web:a67a6b2e8d075bbbaabdfd",
+          measurementId: "G-KW968MKD5F"
+        };
+        
+        
+        firebase.initializeApp(firebaseConfig);
+        firebase.analytics();
+      
+        </script>
+          <script src="workdetails.js"></script>
+        
+    </body>
+</html>

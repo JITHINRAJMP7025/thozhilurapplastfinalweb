@@ -7,18 +7,13 @@
 
     </head>
     <body>
-        <div class="maindiv">
-            <div class="title"><h1>ADD LEADER</h1></div>
-        <div class="social media">
-            <h3>Leader Registration</h3>
-        </div>
-        <div class="form">
-            <div class="inputfield"><input type="text" placeholder="Name" id="nameleader" class="input"></div>
-            <div class="inputfield"> <input type="text" placeholder="mobilenumber" id="mobileid" class="input" ></div>
-            <div class="inputfield"><input type="text" placeholder="password" id="password" class="input"></div>
-            <div class="btn"> <button type="button" onclick="myclick()">ADD</button>
-        </div>
-       </div>
+       <form class="box"  method="POST">
+        <h2>Leader Registration</h2>
+        <input type="text"  placeholder="Name" id="nameleader">
+        <input type="text"  placeholder="mobilenumber" id="mobileid">
+        <input type="password"  placeholder="Password" id="Password">
+        <button type="button" onclick="leaderclick()" >submit</button>
+        </form>
      
        <script src="https://www.gstatic.com/firebasejs/8.6.5/firebase.js"></script>
        <script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-auth.js"></script>
@@ -54,6 +49,14 @@
 firebase.initializeApp(firebaseConfig);
 firebase.analytics();
 </script>
-<script src="index.js"></script>
+<script>var homeid= localStorage.getItem("homeuserid");
+  
+    var value=homeid;
+    window.alert(value+"insert");
+   localStorage.setItem("leaderid", homeid);
+</script>
+<script src="index.js">
+</script>
+
     </body>
 </html>

@@ -11,7 +11,7 @@
 		
 			
      <ul>
-         <li><a href="#">Card Apllication</a></li>
+         <li><a href="#" onclick="cardapplication()">Card Apllication</a></li>
          <li><a href="#">Workers Details</a></li>
           <li><a href="#">Work Application</a></li>
           <li><a href="#" onclick="addleader()">Add Leader</a></li> 
@@ -26,22 +26,32 @@
 			<img src="logo.JPG"></div>
 			
 </header>
-<div id="result"></div>
+
  
 <script>
 // Check browser support
 if (typeof(Storage) !== "undefined") {
 // Retrieve
-var a=document.getElementById("result").innerHTML = localStorage.getItem("userid");
-window.alert(a+"value here");
-} else {
-document.getElementById("result").innerHTML = "Browser does not support Web Storage.";
-}
-function addleader(){
-	window.alert("inside function")
-	window.location.href = "addleader.html";
-}
+var homeid = localStorage.getItem("userid");
+window.alert(homeid+"value here");
+} 
+var ldrid=homeid;
 
+function addleader(){
+
+                    localStorage.setItem("homeuserid", ldrid);
+					
+                 window.alert(ldrid);
+
+	          window.location.href = "addleader.html";
+}
+function cardapplication(){
+	localStorage.setItem("homeuserid", ldrid);
+					
+					window.alert(ldrid);
+   
+				 window.location.href = "workerapply.html";
+}
 </script>
 </body>
 </html>
