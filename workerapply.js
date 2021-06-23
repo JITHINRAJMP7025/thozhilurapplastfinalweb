@@ -2,7 +2,6 @@
   
    var wrkapply= localStorage.getItem("homeuserid");
  
- window.alert(wrkapply);
 
     var ref = firebase.database().ref('users/'+'/workers').orderByKey();
     ref.once("value")
@@ -24,7 +23,7 @@
                 var panchayat = snapshot.val().panchayatname;
                // var link=snapshot.val().adharphoto;
                 if(panchayat == wrkapply){
-                AddItemsToTable(Name,Address,Adharno,Bankno,wrkn,key);
+                AddItemsToTable(Name,Address,Adharno,Bankno,wrkn,key,wrkapply);
                 wrkn++;
                 }
                /* var tbody = document.getElementById('tbody1');
@@ -55,7 +54,7 @@
 window.onload = application;
 
 
-function AddItemsToTable(Name,Address,Adharno,Bankno,wrkn,key){
+function AddItemsToTable(Name,Address,Adharno,Bankno,wrkn,key,wrkapply){
 var tbody = document.getElementById('tbody1');
 var trow = document.createElement('tr');
 var td1 = document.createElement('td');

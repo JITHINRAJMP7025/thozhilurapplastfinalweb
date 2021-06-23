@@ -6,18 +6,23 @@
 	<link rel="stylesheet" type="text/css" href="stylehome.css">
 </head>
 <body>
+
+
+
 <header>
 	<div class="main">
 		
 			
      <ul>
-         <li><a href="#" onclick="cardapplication()">Card Apllication</a></li>
-         <li><a href="#">Workers Details</a></li>
-          <li><a href="#">Work Application</a></li>
+         <li><a href="#" onclick="cardapplication()">Card Application</a></li>
+         <li><a href="#" onclick="workersdetails()">Workers Details</a></li>
+          <li><a href="#" onclick="workapplication()">Work Application</a></li>
           <li><a href="#" onclick="addleader()">Add Leader</a></li> 
+		  <li><a href="#" onclick="logout()">Log out</a></li> 
          <li><a href="#">About Us</a></li> 
      </ul>
-
+	<div class="name"><p id="demo" 
+		></p></div>
 	</div>
 	<div class="headingtxt">
 				<p>തൊഴിലുറപ്പ് പദ്ധതി</p></div>
@@ -27,31 +32,99 @@
 			
 </header>
 
- 
+
 <script>
+	
 // Check browser support
 if (typeof(Storage) !== "undefined") {
 // Retrieve
 var homeid = localStorage.getItem("userid");
-window.alert(homeid+"value here");
+
 } 
 var ldrid=homeid;
+
 
 function addleader(){
 
                     localStorage.setItem("homeuserid", ldrid);
 					
-                 window.alert(ldrid);
+               
 
 	          window.location.href = "addleader.html";
 }
 function cardapplication(){
 	localStorage.setItem("homeuserid", ldrid);
 					
-					window.alert(ldrid);
+				
    
 				 window.location.href = "workerapply.html";
 }
+function workapplication(){
+	localStorage.setItem("homeuserid", ldrid);
+
+   
+				 window.location.href = "workapply.html";
+
+}
+function workersdetails(){
+	localStorage.setItem("homeuserid", ldrid);
+
+   
+				 window.location.href = "workersdetails.html";
+
+}
+function logout(){
+	window.location.href = "login.html";
+}
+
+
+</script>
+
+<script src="https://www.gstatic.com/firebasejs/8.6.5/firebase.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-auth.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-databse.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-storage.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-analytics.js"></script>
+
+<script>
+const firebaseConfig = {
+  apiKey: "AIzaSyA4nlT7zZHEMZNFJw4yP-oSp8GmVnS8afE",
+  authDomain: "thozhilurapplastfinalproject.firebaseapp.com",
+  databaseURL: "https://thozhilurapplastfinalproject-default-rtdb.firebaseio.com",
+  projectId: "thozhilurapplastfinalproject",
+  storageBucket: "thozhilurapplastfinalproject.appspot.com",
+  messagingSenderId: "782716111048",
+  appId: "1:782716111048:web:a67a6b2e8d075bbbaabdfd",
+  measurementId: "G-KW968MKD5F"
+};
+
+
+firebase.initializeApp(firebaseConfig);
+firebase.analytics();
+
+
+
+var ref = firebase.database().ref('users/'+'/Admin').orderByKey();
+    ref.once("value")
+      .then(function(snapshot) {
+        snapshot.forEach(function(childSnapshot) {
+        
+          var key = childSnapshot.key;
+          
+		 
+		  if(key == ldrid){
+			var ref1=firebase.database().ref("users/"+"/Admin/"+key);
+           ref1.on('value', (snapshot) => {
+               var Name = snapshot.val().name;
+			  
+				document.getElementById("demo").innerHTML = Name+" "+"Gram Panchayat";
+		    });
+		  }
+	
+		});
+	});
+	//window.alert("hai");
+
 </script>
 </body>
 </html>

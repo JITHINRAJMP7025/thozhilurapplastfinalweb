@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title style="color: darkgray;">WORKERS DETAILS </title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    </head>
+    <body>
+        <style>
+          .b1{
+        border: 2px solid white ;
+        margin-left: 5px;
+       background-color: white;
+       color: black;
+       padding: 5px 20px;
+       font-size: 12px;
+       cursor: pointer;
+       background:#2196F3 ;
+       color: white;
+}
+             h2{
+    text-align: center;
+text-transform: uppercase;
+font-style:unset;
+color:darkred;
+margin-top: 0%;
+text-decoration: underline;
+}
+body{
+    border: 4px solid black;
+}
+select{
+	border:0; 
+	background: black;
+	display: block;
+	margin: 17px auto;
+	text-align: center;
+	border: 4px solid #2ecc71;
+	padding: 6px 25px;
+    outline: none;
+	color:white;
+	border-radius: 20px;
+	transition: 0.25s;
+	cursor: pointer;
+
+}
+button{
+    border:0; 
+	background: black;
+	display: block;
+	margin: 20px auto;
+	text-align: center;
+	border: 4px solid #2ecc71;
+	padding: 5px 35px;
+    outline: none;
+	color: white;
+	border-radius: 24px;
+	transition: 0.25s;
+	cursor: pointer;
+}
+
+
+</style>
+<button class="b1" onclick="back()"> back</button>
+<h2>WORKERS Daily Details</h2>
+
+<select id="select">
+    <option value="no items" >--Select Date--</option>
+  </select>
+<button type="button" onclick="dailydata()" id="button">select</button>
+        </style>
+        
+        <table class="table">
+            <thead>
+                <th>No</th>
+                <th>CardNo</th>
+                <th>Dutystatus</th>
+                
+            </thead>
+            <tbody id="tbody1">
+                
+            </tbody>
+            <tr>
+              <td><form><input type=submit onclick="image()" value="Daily Image"></form></td>
+              </tr>
+              
+        </table>
+      
+        <script src="https://www.gstatic.com/firebasejs/8.6.5/firebase.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-auth.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-databse.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-storage.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-analytics.js"></script>
+
+<script>
+const firebaseConfig = {
+  apiKey: "AIzaSyA4nlT7zZHEMZNFJw4yP-oSp8GmVnS8afE",
+  authDomain: "thozhilurapplastfinalproject.firebaseapp.com",
+  databaseURL: "https://thozhilurapplastfinalproject-default-rtdb.firebaseio.com",
+  projectId: "thozhilurapplastfinalproject",
+  storageBucket: "thozhilurapplastfinalproject.appspot.com",
+  messagingSenderId: "782716111048",
+  appId: "1:782716111048:web:a67a6b2e8d075bbbaabdfd",
+  measurementId: "G-KW968MKD5F"
+};
+
+
+firebase.initializeApp(firebaseConfig);
+firebase.analytics();
+
+var id= localStorage.getItem("leaderid");
+  
+    var value=id;
+    
+   
+  var wrkn=1;
+  
+   var dbform = firebase.database().ref('users/'+'/leader').orderByKey();
+    dbform.once("value")
+    .then(function(snapshot) {
+     snapshot.forEach(function(childSnapshot) {
+        
+     var key1 = childSnapshot.key;
+     var ref1=firebase.database().ref('users/'+'/leader/'+key1+'/workdetails').orderByKey();
+       ref1.once("value")
+    .then(function(snapshot) {
+     snapshot.forEach(function(childSnapshot) {
+        
+     var key2 = childSnapshot.key;
+     var ref2=firebase.database().ref('users/'+'/leader/'+key1+'/workdetails/'+key2).orderByKey();
+       ref2.once("value")
+    .then(function(snapshot) {
+     snapshot.forEach(function(childSnapshot) {
+        
+     var key3 = childSnapshot.key;
+    // window.alert(key3);
+    var ref3=firebase.database().ref('users/'+'/leader/'+key1+'/workdetails/'+key2+'/'+key3).orderByKey();
+       ref3.once("value")
+    .then(function(snapshot) {
+     snapshot.forEach(function(childSnapshot) {
+        
+     var key4 = childSnapshot.key;
+     var date=key2+"/"+key3+"/"+key4;
+    
+     var select = document.getElementById("select");
+                     var option = document.createElement("option")
+                      txt = document.createTextNode(date);
+                      console.log(txt);
+                      option.appendChild(txt);
+                    select.insertBefore(option,select.lastChild);
+
+                  });
+     });
+    });
+      });
+    
+    });
+});
+    });
+  });
+    // var key1 = childSnapshot.key;
+    function dailydata(){
+      
+       var wrkn=1;
+  
+  var dbform = firebase.database().ref('users/'+'/leader').orderByKey();
+   dbform.once("value")
+   .then(function(snapshot) {
+    snapshot.forEach(function(childSnapshot) {
+       
+    var key1 = childSnapshot.key;
+   
+    var ref1=firebase.database().ref('users/'+'/leader/'+key1+'/workdetails').orderByKey();
+      ref1.once("value")
+   .then(function(snapshot) {
+    snapshot.forEach(function(childSnapshot) {
+       
+    var key2 = childSnapshot.key;
+    
+    var ref2=firebase.database().ref('users/'+'/leader/'+key1+'/workdetails/'+key2).orderByKey();
+      ref2.once("value")
+   .then(function(snapshot) {
+    snapshot.forEach(function(childSnapshot) {
+       
+    var key3 = childSnapshot.key;
+  
+   // window.alert(key3);
+   var ref3=firebase.database().ref('users/'+'/leader/'+key1+'/workdetails/'+key2+'/'+key3).orderByKey();
+      ref3.once("value")
+   .then(function(snapshot) {
+    snapshot.forEach(function(childSnapshot) {
+       
+    var key4 = childSnapshot.key;
+   
+    var ref4=firebase.database().ref('users/'+'/leader/'+key1+'/workdetails/'+key2+'/'+key3+'/'+key4).orderByKey();
+    ref4.once("value")
+   .then(function(snapshot) {
+    snapshot.forEach(function(childSnapshot) {
+       
+    var key5 = childSnapshot.key;
+    var ref5=firebase.database().ref('users/'+'/leader/'+key1+'/workdetails/'+key2+'/'+key3+'/'+key4+'/'+key5);
+    ref5.once("value",function(snapshot) {
+    var Cardno = snapshot.val().cardno;
+    var duty = snapshot.val().dutystatus;
+     
+      AddItemsToTable(Cardno,duty,wrkn);
+      wrkn++;
+    
+     })
+  
+     
+    });
+  });
+
+                 });
+    });
+   });
+     });
+   
+   });
+});
+   });
+ });
+    
+    }
+
+
+
+ window.onload = application;
+function AddItemsToTable(Cardno,duty,wrkn){
+  
+var tbody = document.getElementById('tbody1');
+var trow = document.createElement('tr');
+var td1 = document.createElement('td');
+var td2 = document.createElement('td');
+var td3=document.createElement('td');
+
+td1.innerHTML=wrkn;
+td2.innerHTML= Cardno;
+td3.innerHTML= duty;
+trow.appendChild(td1); 
+trow.appendChild(td2); 
+trow.appendChild(td3);
+tbody.appendChild(trow);
+}
+
+function back(){
+window.location.href="home.html"
+}
+</script>
+
+    </body>
+</html>

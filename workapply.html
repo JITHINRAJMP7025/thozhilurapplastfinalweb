@@ -1,14 +1,94 @@
 <html>
     <head>
         <title style="color: darkgray;">APPLICATION FOR WORKERS </title>
-        <link rel="stylesheet"  href="workerapply.css">
+        
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     </head>
     <body>
+        <style>
+            h2{
+   text-align: center;
+text-transform: uppercase;
+font-style:unset;
+color:darkred;
+text-decoration: underline;
+}
+body{
+   border: 4px solid black;
+}
+.b1{
+    border: 2px solid white ;
+
+       background-color: white;
+       color: black;
+       padding: 5px 20px;
+       font-size: 12px;
+       cursor: pointer;
+       background:#2196F3 ;
+       color: white;
+}
+button{
+    border: 2px solid #2196F3;
+
+       background-color: white;
+       color: black;
+       padding: 8px 20px;
+       font-size: 12px;
+       cursor: pointer;
+       background:white ;
+       color: black;
+}
+       </style>
+     <button class="b1" onclick="back()"> back</button>
         <h2>APPLICATION OF WORK</h2>
-        <table>
+        <table class="table">
             <thead>
-                <th></th>
+                <th>No</th>
+                <th>Name</th>
+                <th>CardNo</th>
+                <th>Mobileno</th>
+                <th>LandTax</th>
+                <th>Status</th>
+                
+               
             </thead>
+            <tbody id="tbody1">
+             
+            </tbody>
         </table>
+        <script src="https://www.gstatic.com/firebasejs/8.6.5/firebase.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-auth.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-databse.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-storage.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-analytics.js"></script>
+        
+        <script>
+        const firebaseConfig = {
+          apiKey: "AIzaSyA4nlT7zZHEMZNFJw4yP-oSp8GmVnS8afE",
+          authDomain: "thozhilurapplastfinalproject.firebaseapp.com",
+          databaseURL: "https://thozhilurapplastfinalproject-default-rtdb.firebaseio.com",
+          projectId: "thozhilurapplastfinalproject",
+          storageBucket: "thozhilurapplastfinalproject.appspot.com",
+          messagingSenderId: "782716111048",
+          appId: "1:782716111048:web:a67a6b2e8d075bbbaabdfd",
+          measurementId: "G-KW968MKD5F"
+        };
+        
+        
+        firebase.initializeApp(firebaseConfig);
+        firebase.analytics();
+        </script>
+
+<script>var homeid= localStorage.getItem("homeuserid");
+  
+    var value=homeid;
+   // window.alert(value);
+   localStorage.setItem("leaderid", homeid);
+   function back()
+   {
+    window.location.href = "home.html";
+   }
+</script>
+<script  src="workapply.js"></script>
     </body>
 </html>
