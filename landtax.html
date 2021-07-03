@@ -19,7 +19,7 @@
     }
   </style>
    
-    <img src="data" >
+    <img src="data" id="photo" >
     <label onclick="back()"  >back</label>
    
     <script src="https://www.gstatic.com/firebasejs/8.6.5/firebase.js"></script>
@@ -47,15 +47,16 @@
     <script>
          var userid= localStorage.getItem("userid");
          var cardno= localStorage.getItem("cardid");
+         var wrkapply= localStorage.getItem("homeuserid");
        
+//window.alert(userid+""+cardno);
 
 
 
-
-         var storage    = firebase.storage();
-    var storageRef = storage.ref('users/'+'/leader/'+userid+'/applywork/'+cardno);
+         //var storage    = firebase.storage();
+  /*  var Ref = storage.ref('users/'+'/leader/'+userid+'/applywork/'+cardno);
     var spaceRef = storageRef.child('landtax.jpeg');
-   var spaceRef = storageRef.child();
+   var spaceRef = sorageRef.child();
   // window.alert(spaceRef);
   //  window.alert(storageRef);
     storageRef.child('landtax.jpeg').getDownloadURL().then(function(url) {
@@ -63,10 +64,28 @@
     var test = url;
 
    document.querySelector('img').src = test;
-   });
+   });*/
+   var Ref = firebase.database().ref('users/'+'/leader/'+userid+'/applywork/'+cardno+'/'+'/photo').orderByKey();
+    Ref.once("value")
+        .then(function(snapshot){
+         snapshot.forEach(function(childSnapshot) {
+        
+             var key1 = childSnapshot.key;
+             var Ref1 = firebase.database().ref('users/'+'/leader/'+userid+'/applywork/'+cardno+'/photo/'+key1);
+             Ref1.on('value', (snapshot) => {
+   
+            var urlimage = snapshot.val().imageuri;
+            //window.alert(urlimage);
+          //  var image = document.createElement('img');
+          var image = document.getElementById("photo");
+            image.src=urlimage;
+             });
+        });
+    });
 
    function back(){
     window.location.href = "workapply.html";
+    localStorage.setItem("homeuserid", wrkapply);
    }
     </script>
 

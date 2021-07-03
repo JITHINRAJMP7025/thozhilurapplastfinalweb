@@ -28,8 +28,21 @@ body{
        background:#2196F3 ;
        color: white;
 }
+.b2{
+    border: 2px solid white ;
+
+       background-color: white;
+       color: black;
+       padding: 5px 20px;
+       font-size: 12px;
+       cursor: pointer;
+       background:#2196F3 ;
+       color: white;
+       float: right;
+}
         </style>
            <button class="b1" onclick="back()"> back</button>
+           <button class="b2" onclick="frontpage()"> Approved List</button>
         <h2>APPLICATION OF WORKERS</h2>
         <table class="table">
             <thead>
@@ -37,10 +50,11 @@ body{
                 <th>Name</th>
                 <th>Address</th>
                 <th>Adharno</th>
+                <th>Mob</th>
                 <th>Bankno</th>
                 <th>Adharphoto</th>
                 <th>thozhilcardNo</th>
-               
+              
             </thead>
             <tbody id="tbody1">
              
@@ -70,11 +84,16 @@ firebase.analytics();
 </script>
 <script>var homeid= localStorage.getItem("homeuserid");
   
-    var value=homeid;
+   
     
-   localStorage.setItem("leaderid", homeid);
+  // localStorage.setItem("leaderid", value);
    function back(){
        window.location.href="home.html";
+       localStorage.setItem("homeuserid", homeid);
+   }
+   function frontpage(){
+    localStorage.setItem("homeuserid", homeid);
+    window.location.href="verifiedlist.html";
    }
 </script>
 <script  src="workerapply.js"></script>

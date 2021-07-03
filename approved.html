@@ -1,6 +1,6 @@
 <html>
     <head>
-        <title style="color: darkgray;">APPLICATION FOR WORKERS </title>
+        <title style="color: darkgray;">Approved List   </title>
         
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     </head>
@@ -27,41 +27,19 @@ body{
        background:#2196F3 ;
        color: white;
 }
-.b2{
-    border: 2px solid white ;
 
-       background-color: white;
-       color: black;
-       padding: 5px 20px;
-       font-size: 12px;
-       cursor: pointer;
-       background:#2196F3 ;
-       color: white;
-       float: right;
-}
-button{
-    border: 2px solid #2196F3;
 
-       background-color: white;
-       color: black;
-       padding: 8px 20px;
-       font-size: 12px;
-       cursor: pointer;
-       background:white ;
-       color: black;
-}
        </style>
      <button class="b1" onclick="back()"> back</button>
-     <button class="b2" onclick="frontpage()"> Verified List</button>
-        <h2>APPLICATION OF WORK</h2>
+    
+        <h2>Approved List</h2>
         <table class="table">
             <thead>
                 <th>No</th>
                 <th>Name</th>
                 <th>CardNo</th>
                 <th>Mobileno</th>
-                <th>LandTax</th>
-                <th>Status</th>
+               
                 
                
             </thead>
@@ -92,23 +70,61 @@ button{
         firebase.analytics();
         </script>
 
-<script>var homeid= localStorage.getItem("homeuserid");
+<script>
   
-    var value=homeid;
-   // window.alert(value);
-   localStorage.setItem("homeuserid", homeid);
-   function back()
-   {
-    window.location.href = "home.html";
-   }
+  var wrkapply= localStorage.getItem("homeuserid");
+  var wrkn=1;
+ 
+  var ref = firebase.database().ref('users/'+'/Panchayat/'+wrkapply+'/workstatus/'+'/aprvdcard').orderByKey();
+    ref.once("value")
+      .then(function(snapshot) {
+        snapshot.forEach(function(childSnapshot) {
+        
+          var key = childSnapshot.key;
+          var ref2 = firebase.database().ref('users/'+'/Panchayat/'+wrkapply+'/workstatus/'+'/aprvdcard/'+key);
+          ref2.on('value', (snapshot) => {
+   
+   var Cardno = snapshot.val().cardno;
+   var Mobile = snapshot.val().mobile;
+   var Name = snapshot.val().name;
 
-   function frontpage(){
-  localStorage.setItem("homeuserid", homeid);
+   AddItemsToTable(Name,Mobile,Cardno,wrkn);
+                     wrkn++;
+          });
+        });
+    });
+    function AddItemsToTable(Name,Mobile,Cardno,wrkn){
 
-  window.location.href = "approved.html";
+var tbody = document.getElementById('tbody1');
+var trow = document.createElement('tr');
+var td1 = document.createElement('td');
+var td2 = document.createElement('td');
+var td3 = document.createElement('td');
+var td4 = document.createElement('td');
+
+
+td1.innerHTML= wrkn;
+td2.innerHTML= Name;
+td3.innerHTML= Cardno;
+td4.innerHTML= Mobile;
+
+
+trow.appendChild(td1); 
+trow.appendChild(td2); 
+trow.appendChild(td3);
+trow.appendChild(td4);
+
+
+tbody.appendChild(trow);
+
 
 }
+function back(){
+    window.location.href = "workapply.html"
+    localStorage.setItem("homeuserid", wrkapply);
+}
+
 </script>
-<script  src="workapply.js"></script>
+<script ></script>
     </body>
 </html>

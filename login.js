@@ -22,7 +22,7 @@ function login()
                    // Check browser support
                   if (typeof(Storage) !== "undefined") {
                    // Store
-                     localStorage.setItem("userid", id);
+                     localStorage.setItem("homeuserid", id);
                   }
                   window.location.href = "home.html";
                 }

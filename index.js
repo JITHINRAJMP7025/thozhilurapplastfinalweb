@@ -11,11 +11,11 @@ function leaderclick()
 
  var leader= localStorage.getItem("leaderid");
  
- window.alert(leader);
+ //window.alert(leader);
 
 var firebaseRef = firebase.database().ref('users/'+"/Panchayat/"+leader+"/leaderlogin/"+mobile1);
 
-window.alert(firebaseRef);
+//window.alert(firebaseRef);
  //firebaseRef.set("hai");
  
  firebaseRef.set ({

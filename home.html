@@ -19,7 +19,7 @@
           <li><a href="#" onclick="workapplication()">Work Application</a></li>
           <li><a href="#" onclick="addleader()">Add Leader</a></li> 
 		  <li><a href="#" onclick="logout()">Log out</a></li> 
-         <li><a href="#">About Us</a></li> 
+         <li><a href="#" onclick="changepassword()">Change Password</a></li> 
      </ul>
 	<div class="name"><p id="demo" 
 		></p></div>
@@ -38,7 +38,7 @@
 // Check browser support
 if (typeof(Storage) !== "undefined") {
 // Retrieve
-var homeid = localStorage.getItem("userid");
+var homeid = localStorage.getItem("homeuserid");
 
 } 
 var ldrid=homeid;
@@ -75,6 +75,13 @@ function workersdetails(){
 }
 function logout(){
 	window.location.href = "login.html";
+}
+
+function changepassword(){
+	localStorage.setItem("homeuserid", ldrid);
+
+   
+				 window.location.href = "changepassword.html";
 }
 
 

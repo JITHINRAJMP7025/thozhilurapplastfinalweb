@@ -1,0 +1,146 @@
+<html>
+    <head>
+        <title style="color: darkgray;"> Verified List </title>
+        
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    </head>
+    <body>
+        <style>
+            h2{
+   text-align: center;
+text-transform: uppercase;
+font-style:unset;
+color:darkred;
+text-decoration: underline;
+}
+body{
+   border: 4px solid black;
+}
+.b1{
+    border: 2px solid white ;
+
+       background-color: white;
+       color: black;
+       padding: 5px 20px;
+       font-size: 12px;
+       cursor: pointer;
+       background:#2196F3 ;
+       color: white;
+}
+
+
+       </style>
+     <button class="b1" onclick="back()"> back</button>
+    
+        <h2>Verified List</h2>
+        <table class="table">
+            <thead>
+                <th>No</th>
+                <th>Name</th>
+                <th>Address</th>
+                <th>Adharno</th>
+                <th>Mob</th>
+                <th>Bankno</th>
+                <th>thozhilcardNo</th>
+               
+            </thead>
+            <tbody id="tbody1">
+             
+            </tbody>
+        </table>
+        <script src="https://www.gstatic.com/firebasejs/8.6.5/firebase.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-auth.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-databse.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-storage.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-analytics.js"></script>
+        
+        <script>
+        const firebaseConfig = {
+          apiKey: "AIzaSyA4nlT7zZHEMZNFJw4yP-oSp8GmVnS8afE",
+          authDomain: "thozhilurapplastfinalproject.firebaseapp.com",
+          databaseURL: "https://thozhilurapplastfinalproject-default-rtdb.firebaseio.com",
+          projectId: "thozhilurapplastfinalproject",
+          storageBucket: "thozhilurapplastfinalproject.appspot.com",
+          messagingSenderId: "782716111048",
+          appId: "1:782716111048:web:a67a6b2e8d075bbbaabdfd",
+          measurementId: "G-KW968MKD5F"
+        };
+        
+        
+        firebase.initializeApp(firebaseConfig);
+        firebase.analytics();
+        </script>
+
+<script>
+  
+  var wrkapply= localStorage.getItem("homeuserid");
+ 
+  var wrkn=1;
+
+  var ref = firebase.database().ref('users/'+'/Panchayat/'+wrkapply+'/thozhilcardnumber').orderByKey();
+    ref.once("value")
+      .then(function(snapshot) {
+        snapshot.forEach(function(childSnapshot) {
+        
+          var key = childSnapshot.key;
+          var ref2 = firebase.database().ref('users/'+'/Panchayat/'+wrkapply+'/thozhilcardnumber/'+key);
+          ref2.on('value', (snapshot) => {
+   
+                var Name = snapshot.val().name;
+                var Address = snapshot.val().address;
+                var Adharno = snapshot.val().adhar;
+                var Bankno = snapshot.val().bank;
+                var Cardno = snapshot.val().cardno;
+                
+                var Mobile = snapshot.val().mobile;
+               
+             
+   AddItemsToTable(Name,Mobile,Cardno,wrkn,Address,Adharno,Bankno);
+                     wrkn++;
+          });
+        });
+    });
+    function AddItemsToTable(Name,Mobile,Cardno,wrkn,Address,Adharno,Bankno){
+
+var tbody = document.getElementById('tbody1');
+var trow = document.createElement('tr');
+var td1 = document.createElement('td');
+var td2 = document.createElement('td');
+var td3 = document.createElement('td');
+var td4 = document.createElement('td');
+var td5 = document.createElement('td');
+var td6 = document.createElement('td');
+var td7 = document.createElement('td');
+
+
+td1.innerHTML= wrkn;
+td2.innerHTML= Name;
+td3.innerHTML= Address;
+td4.innerHTML= Adharno;
+td5.innerHTML= Mobile;
+td6.innerHTML= Bankno;
+td7.innerHTML= Cardno;
+
+
+
+trow.appendChild(td1); 
+trow.appendChild(td2); 
+trow.appendChild(td3);
+trow.appendChild(td4);
+trow.appendChild(td5);
+trow.appendChild(td6);
+trow.appendChild(td7);
+
+tbody.appendChild(trow);
+
+
+}
+function back(){
+    window.location.href = "workerapply.html"
+    localStorage.setItem("homeuserid", wrkapply);
+}
+
+</script>
+<script ></script>
+    </body>
+</html>

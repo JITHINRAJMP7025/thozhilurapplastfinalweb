@@ -46,58 +46,70 @@
     </script>
     <script>
         
-        var key= localStorage.getItem("userid");
+     
+        var date1= localStorage.getItem("date");
+    
+       
+
         var wrkapply= localStorage.getItem("homeuserid");
-       /* var dblogs = firebase.database().ref('users/'+'/workers/'+key+'/Applydetails/'+'/adharphoto');
-        dblogs.once("value")
-       .then(function(snapshot) {
-        snapshot.forEach(function(childSnapshot) {
-          var key1 = childSnapshot.key;*/
-         
-         /* var ref1 = firebase.database().ref('users/'+'/workers/'+key+'/Applydetails/'+'/adharphoto/'+key1);
-         ref1.on('value', (snapshot) => {
-            var data = snapshot.val().imageuri;
-           window.alert(data);
-          //  document.querySelector('img').src = data;
-          var img1 =  document.getElementById('myimg');
-          img1.setAttribute('src', data);
-          });
-         //*/
-   //     });
- //  });
-
-
-
-   // var storage    = firebase.database();
-    var Ref = firebase.database().ref('users/'+'/workers/'+key+'/Applydetails/'+'/adharphoto').orderByKey();
-    Ref.once("value")
-        .then(function(snapshot){
-         snapshot.forEach(function(childSnapshot) {
-        
-             var key1 = childSnapshot.key;
-             var Ref1 = firebase.database().ref('users/'+'/workers/'+key+'/Applydetails/'+'/adharphoto/'+key1);
+        var leaderid=localStorage.getItem("leaderid");
+     
+        var ref1=firebase.database().ref('users/'+'/cameraphoto/'+leaderid).orderByKey();
+      ref1.once("value")
+   .then(function(snapshot) {
+    snapshot.forEach(function(childSnapshot) {
+       
+    var key2 = childSnapshot.key;
+ 
+    var ref2=firebase.database().ref('users/'+'/cameraphoto/'+leaderid+'/'+key2).orderByKey();
+      ref2.once("value")
+   .then(function(snapshot) {
+    snapshot.forEach(function(childSnapshot) {
+       
+    var key3 = childSnapshot.key;
+    
+   var ref3=firebase.database().ref('users/'+'/cameraphoto/'+leaderid+'/'+key2+'/'+key3).orderByKey();
+      ref3.once("value")
+   .then(function(snapshot) {
+    snapshot.forEach(function(childSnapshot) {
+  
+    var key4 = childSnapshot.key;
+    
+   var date=key2+"/"+key3+"/"+key4;
+ 
+   if(date1 == date){
+  
+    var Ref1 = firebase.database().ref('users/'+'/cameraphoto/'+leaderid+'/'+key2+'/'+key3+'/'+key4);
              Ref1.on('value', (snapshot) => {
    
-            var urlimage = snapshot.val().imageuri;
-           // window.alert(urlimage);
-          //  var image = document.createElement('img');
+            var urlimage = snapshot.val().photo;
+        
+          
           var image = document.getElementById("photo");
             image.src=urlimage;
              });
-         });
+         
+    
+
+
+                   }
+                                 });
     });
-   /* var spaceRef = storageRef.child('adhar.jpeg');
-    window.alert(storageRef);
-    storageRef.child('adhar.jpg').getDownloadURL().then(function(url) {
+   });
+     });
+   
+   });
+});
+   
+ 
+    
+    
 
-    var test = url;
-
-   document.querySelector('img').src = test;
-   });*/
 
    function back(){
-    window.location.href = "workerapply.html"
+    window.location.href = "details.html"
     localStorage.setItem("homeuserid", wrkapply);
+    localStorage.setItem("leaderid", leaderid);
    }
     </script>
 </body>

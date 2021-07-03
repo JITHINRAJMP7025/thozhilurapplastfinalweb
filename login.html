@@ -14,6 +14,7 @@
 <input type="text"  placeholder="Userid" id="Userid">
 <input type="password"  placeholder="Password" id="Password">
 <button type="button" onclick="login()" id="button">LOGIN</button>
+<h2 onclick="panchayatpswrd()">forgot password </h2>
 </form>
 <script src="https://www.gstatic.com/firebasejs/8.6.5/firebase.js"></script>
 <script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-auth.js"></script>
@@ -36,8 +37,10 @@ const firebaseConfig = {
 
 firebase.initializeApp(firebaseConfig);
 firebase.analytics();
-</script>
+</script> 
 <script  src="login.js"></script>
-
+function panchayatpswrd(){
+  window.location.href = "approved.html";
+}
 </body>
 </html>
